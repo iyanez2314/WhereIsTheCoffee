@@ -1,4 +1,4 @@
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import React from 'react';
 
 export const LocalCoffeeShops = [
@@ -30,19 +30,27 @@ export const LocalCoffeeShops = [
 ];
 
 
-export default function ResturantItems({cityData}) {
+export default function ResturantItems({cityData, navigation}) {
   return (
-    <View>
+    <>
     {cityData.map((items, index) => (
-        <View key={index} style={{backgroundColor: '#FFF8EA', marginBottom: 10, marginTop: 10}}>
+        <TouchableOpacity key={index} activeOpacity={1} style={{backgroundColor: '#FFF8EA', marginBottom: 10, marginTop: 10}} 
+        onPress={() => navigation.navigate('ResturantDetail', {
+            name: items.name,
+            image: items.image_url,
+            reviews: items.review_count,
+            address: items.location.display_address,
+            isClosed: items.is_closed,
+            rating: items.rating
+        })}>
             <CoffeeShopeImage imageURL={items.image_url}/>
             <View style={styles.mainInfoContainer}> 
                 <CoffeeShopName LocalCompanies={items.name}/>
                 <CoffeeShopRatings CompanyRating={items.rating}/>
             </View> 
-        </View>
+        </TouchableOpacity>
     ))}
-    </View>
+    </>
   )
 };
 

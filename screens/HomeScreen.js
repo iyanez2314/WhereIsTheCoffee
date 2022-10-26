@@ -1,11 +1,11 @@
 import { View, Text, SafeAreaView, StyleSheet, ScrollView } from 'react-native';
 import React, {useState, useEffect } from 'react';
-import SearchBar from './SearchBar';
+import SearchBar from '../components/SearchBar';
 import ResturantItems from '../components/ResturantItems';
 import {YELP_API} from '@env';
 import { LocalCoffeeShops } from '../components/ResturantItems';
 
-export default function HomeScreen() {
+export default function HomeScreen({navigation}) {
 
   const [city, setCity] = useState('San Antonio');
   const [cityData, setCityData] = useState(LocalCoffeeShops);
@@ -37,7 +37,7 @@ export default function HomeScreen() {
     </View> 
     </SafeAreaView>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <ResturantItems cityData={cityData}/>
+        <ResturantItems cityData={cityData} navigation={navigation}/>
       </ScrollView>
     </>
   )
