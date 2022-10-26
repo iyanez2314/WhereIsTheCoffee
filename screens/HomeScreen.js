@@ -15,7 +15,7 @@ export default function HomeScreen() {
       <SearchBar />
     </View> 
     </SafeAreaView>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <ResturantItems/>
       </ScrollView>
     </>
