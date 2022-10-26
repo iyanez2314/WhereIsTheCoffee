@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text, Image, StyleSheet } from 'react-native';
 import React from 'react';
 
 export const LocalCoffeeShops = [
@@ -41,13 +41,13 @@ export const LocalCoffeeShops = [
 export default function ResturantItems() {
   return (
     <View>
-        
-
-
     {LocalCoffeeShops.map((items, index) => (
-        <View key={index} style={{backgroundColor: 'red', marginBottom: 10, marginTop: 10}}>
-        <CoffeeShopName LocalCompanies={items.name}/>
-        <Text>{items.rating}</Text>
+        <View key={index} style={{backgroundColor: '#FFF8EA', marginBottom: 10, marginTop: 10}}>
+            <CoffeeShopeImage imageURL={items.image_url}/>
+            <View style={styles.mainInfoContainer}> 
+                <CoffeeShopName LocalCompanies={items.name}/>
+                <CoffeeShopRatings CompanyRating={items.rating}/>
+            </View> 
         </View>
     ))}
     </View>
@@ -57,12 +57,53 @@ export default function ResturantItems() {
 
 const CoffeeShopName = ({LocalCompanies}) => {
     return (
-        <View>
-            <Text>{LocalCompanies}</Text>
+        <View style={styles.LocalCompanyView}>
+            <Text style={styles.LocalCompanyText}>{LocalCompanies}</Text>
         </View>
     )
 };
 
-const CoffeeShopRatings = () => {};
+const CoffeeShopRatings = ({CompanyRating}) => {
+    return (
+        <View style={styles.CompanyRatingView}>
+            <Text style={styles.CompanyRating}>{CompanyRating}</Text>
+        </View>
+    )
+};
 
-const CoffeeShopeImage = () => {};
+const CoffeeShopeImage = ({imageURL}) => {
+    return (
+        <View>
+            <Image source={{uri: imageURL}} style={{width: '100%', height: 180}} />
+        </View>
+    )
+};
+
+
+const styles = StyleSheet.create({
+    mainInfoContainer: {
+        padding: 10,
+        marginTop: 15,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center'
+    },
+    LocalCompanyView: {},
+    LocalCompanyText: {
+        fontWeight: '700',
+        fontSize: 14,
+        color: '#9E7676'
+    },
+    CompanyRatingView: {
+        backgroundColor: '#9E7676',
+        width: 25,
+        height: 25,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 11,
+    },
+    CompanyRating: {
+        fontWeight: '700',
+        color: '#FFF8EA'
+    }
+});
