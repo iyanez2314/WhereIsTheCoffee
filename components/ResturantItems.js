@@ -29,19 +29,11 @@ export const LocalCoffeeShops = [
     },
 ];
 
-/*
-    This component is made up of  sub components such as: 
-    Coffee Shop text,
-    Coffee Shop Image & 
-    Coffee Shop Rating
-    
-    We will make up the sub components Under the main component and send all info to sub components via props
-*/
 
-export default function ResturantItems() {
+export default function ResturantItems({cityData}) {
   return (
     <View>
-    {LocalCoffeeShops.map((items, index) => (
+    {cityData.map((items, index) => (
         <View key={index} style={{backgroundColor: '#FFF8EA', marginBottom: 10, marginTop: 10}}>
             <CoffeeShopeImage imageURL={items.image_url}/>
             <View style={styles.mainInfoContainer}> 

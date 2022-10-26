@@ -4,12 +4,16 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 import CityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {GOOGLE_API} from '@env';
 
-export default function SearchBar() {
+export default function SearchBar({setCity}) {
   return (
     <View style={styles.SearchView}>
       <GooglePlacesAutocomplete
         placeholder='Type in your city'
         query={{key: GOOGLE_API}}
+        onPress={(data, details) => {
+            const city = data.description.split(",")[0]; // San Antonio, TX, USA, 78108
+            setCity(city);
+        }}
         renderLeftButton={() => (
             <View style={styles.leftButtonView}>
                 <CityIcon name='city-variant-outline' size={25}/>
