@@ -82,7 +82,7 @@ const CoffeeShopeImage = ({imageURL}) => {
 
 const styles = StyleSheet.create({
     mainInfoContainer: {
-        padding: 10,
+        padding: 9,
         marginTop: 15,
         flexDirection: 'row',
         justifyContent: 'space-between',
