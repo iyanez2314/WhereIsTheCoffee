@@ -37,7 +37,7 @@ const CoffeShopDescription = ({reviews, isClosed, address, name, rating}) => {
     return (
         <View>
             <Text style={styles.descriptionText}>{formatDescription}</Text>
-            <Text style={styles.descriptionText}>{isClosed ? `${name} is closed` : `${name} is closed`}</Text>
+            <Text style={styles.descriptionText}>{isClosed ? `${name} is closed` : `${name} is open`}</Text>
             <Text style={styles.descriptionText}>{address}</Text>
         </View>
     )
