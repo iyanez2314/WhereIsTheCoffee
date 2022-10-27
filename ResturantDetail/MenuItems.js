@@ -1,10 +1,10 @@
-import { View, Text, Image, ScrollView} from 'react-native'
+import { View, Text, Image, ScrollView, StyleSheet} from 'react-native'
 import React from 'react'
 
 const FakeCoffeeInfo = [
     {
         title: 'The Best Cofee',
-        description: 'Coffee with a shot of jack daiels',
+        description: 'It’s a single or double-shot topped up with hot water to give a rich and delicious cup of coffee that can be enjoyed black or milk and sugar added.',
         price: '$7.45',
         image: 'https://media-cldnry.s-nbcnews.com/image/upload/t_nbcnews-fp-1200-630,f_auto,q_auto:best/newscms/2019_33/2203981/171026-better-coffee-boost-se-329p.jpg'
     },
@@ -45,12 +45,12 @@ export default function MenuItems() {
     <View>
       {
           FakeCoffeeInfo.map((coffees, index) => (
-              <View key={index}>
-                 <MenuItemImage image={coffees.image}/>
+              <View key={index} style={styles.mainView}>
                   <MenuItemDescription 
                   title={coffees.title} 
                   description={coffees.description} 
                   price={coffees.price}/>
+                  <MenuItemImage image={coffees.image}/>
               </View>
           ))
       }
@@ -60,16 +60,28 @@ export default function MenuItems() {
 
 const MenuItemImage = ({image}) => {
     return (
+        <View>
         <Image source={{uri: image}} style={{width: 100, height: 100}}/>
+        </View>
     )
 }
 
 const MenuItemDescription = ({title, description, price}) => {
     return (
-        <View>
+        <View style={styles.text}>
             <Text>{title}</Text>
             <Text>{description}</Text>
             <Text>{price}</Text>
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    mainView: {
+        justifyContent: 'space-between',
+        flexDirection: 'row', 
+    },
+    ImageView: {
+        justifyContent: 'flex-end'
+    }
+})
