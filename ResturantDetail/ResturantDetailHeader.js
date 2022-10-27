@@ -47,7 +47,7 @@ const CoffeShopDescription = ({reviews, isClosed, address, name, rating}) => {
 const styles = StyleSheet.create({
     imageStyle: {
         width: '100%',
-        height: 350
+        height: 300
     },
     resturantTitle: {
         fontSize: 30,

@@ -10,7 +10,7 @@ export default function ResturantDetail({route, navigation}) {
       <ScrollView>
         <ResturantDetailHeader route={route} />
         <Divider width={1} style={styles.divider} />
-        <MenuItems />
+        {/* <MenuItems /> */}
       </ScrollView>
     </View>
   )
