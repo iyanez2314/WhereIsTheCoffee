@@ -4,6 +4,7 @@ import SearchBar from '../components/SearchBar';
 import ResturantItems from '../components/ResturantItems';
 import {YELP_API} from '@env';
 import { LocalCoffeeShops } from '../components/ResturantItems';
+import CoffeeStories from '../components/CoffeeStories';
 
 export default function HomeScreen({navigation}) {
 
@@ -35,6 +36,7 @@ export default function HomeScreen({navigation}) {
     <View style={styles.MainView}>
       <SearchBar setCity={setCity} />
     </View> 
+    <CoffeeStories />
     </SafeAreaView>
       <ScrollView showsVerticalScrollIndicator={false}>
         <ResturantItems cityData={cityData} navigation={navigation}/>
