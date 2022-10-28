@@ -2,7 +2,7 @@ import { View, Text, ScrollView, Image, StyleSheet } from 'react-native';
 import React from 'react';
 
 
-const FakeUserData = [
+export const FakeUserData = [
     {
         userName: 'CoffeeLover1',
         userImage: require('../assets/FakeUserImages.js/image0.jpeg')

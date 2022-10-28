@@ -3,6 +3,7 @@ import React from 'react';
 import { Divider } from 'react-native-elements';
 import MenuItems from '../ResturantDetail/MenuItems';
 import ResturantDetailHeader from '../ResturantDetail/ResturantDetailHeader';
+import CommentsComponent from '../components/CommentsComponent';
 
 export default function ResturantDetail({route, navigation}) {
   return (
@@ -10,7 +11,7 @@ export default function ResturantDetail({route, navigation}) {
       <ScrollView>
         <ResturantDetailHeader route={route} />
         <Divider width={1} style={styles.divider} />
-        {/* <MenuItems /> */}
+        <CommentsComponent />
       </ScrollView>
     </View>
   )
