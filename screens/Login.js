@@ -21,9 +21,6 @@ export default function Login({navigation}) {
 const  UsernameLogin = () => {
     return (
         <View style={styles.InputView}>
-            {/* <View style={styles.iconView}>
-                <EmailSign name="alternate-email" size={25} color='#9E7676'/>
-            </View> */}
         <TextInput
             placeholder='Username'
             placeholderTextColor="#9E7676"
