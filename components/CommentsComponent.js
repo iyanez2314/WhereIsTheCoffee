@@ -40,7 +40,7 @@ const UserImage = ({FakeUserData}) => {
 const UserComments = () => {
     return (
         <Text style={styles.textColor}>
-            This is a super long comment yay 
+            This is a super long comment yay This is a super long comment yay This is a super long comment yay This is a super long comment yay
         </Text>
     )
 };
@@ -62,7 +62,8 @@ const styles = StyleSheet.create({
         flexWrap: 'nowrap',
         width: '90%',
         height: 110,
-        justifyContent:'center'
+        justifyContent:'center',
+        alignItems: 'center'
     },
     ResturantReviewTxt: {
         fontWeight: '500',
