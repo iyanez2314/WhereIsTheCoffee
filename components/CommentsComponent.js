@@ -8,13 +8,13 @@ export default function CommentsComponent() {
         <View style={{flexDirection: 'row', justifyContent: 'space-between', marginRight: 40, alignItems: 'center'}}>
             <Text style={styles.ResturantReviewTxt}>Resturant Reviews</Text>
             <TouchableOpacity>
-                <Text style={{fontSize: 25, fontWeight: '600'}}>+</Text>
+                <Text style={{fontSize: 25, fontWeight: '600', color: '#9E7676'}}>+</Text>
             </TouchableOpacity>
         </View>  
         <View style={styles.mainViewContainer} >
           {
               FakeUserData.map((users, index) => (
-               <View key={index} style={{flexDirection: 'row', marginBottom: 10}}> 
+               <View key={index} style={{flexDirection: 'row', marginBottom: 10, backgroundColor: '#9E7676', borderRadius: 20}}> 
                     <UserImage FakeUserData={users.userImage}/>
                     <View style={styles.commentAndTimeContainer}>
                         <UserComments />
@@ -31,38 +31,47 @@ export default function CommentsComponent() {
 
 const UserImage = ({FakeUserData}) => {
     return (
+        <View style={{alignItems: 'center', justifyContent: 'center', paddingLeft: 7}}>
         <Image source={FakeUserData}  style={{width: 50, height: 50, borderRadius: 50}}/>
+        </View>
     )
 };
 
 const UserComments = () => {
     return (
-        <Text>
-            This is a super long comment yay This is a super long comment yay This is a super long comment yayThis is a super long comment yay
+        <Text style={styles.textColor}>
+            This is a super long comment yay 
         </Text>
     )
 };
 
 const DateAndTime = () => {
     return (
-        <Text>
-            date and time
+        <Text style={styles.textColor}>
+            10/20/2022
         </Text>
     )
 };
 
 const styles = StyleSheet.create({
+    textColor: {
+        color: '#FFF8EA'
+    },
     commentAndTimeContainer: {
         marginLeft: 20,
         flexWrap: 'nowrap',
-        width: '90%'
+        width: '90%',
+        height: 110,
+        justifyContent:'center'
     },
     ResturantReviewTxt: {
         fontWeight: '500',
-        fontSize: 20
+        fontSize: 20,
+        color: '#9E7676'
     },
     mainCommentsContainer: {
         marginLeft: 10,
+        marginRight: 10
     },
     mainViewContainer: {
         padding: 20,
