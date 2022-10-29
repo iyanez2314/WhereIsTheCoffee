@@ -69,12 +69,12 @@ const EmailChoices = () => {
         <>
             <TouchableOpacity style={[styles.emailContainer, {backgroundColor: '#de5246'}]}>
                 <GmailIcon name="gmail" size={25} color='white' />
-                <Text style={styles.GmailTxt}>Sign up with Google</Text>
+                <Text style={styles.GmailTxt}>Login with Google</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={[styles.emailContainer, {backgroundColor: 'black'}]}>
                 <AppleIcon name="apple" size={25} color='white'/>
-                <Text style={styles.AppleTxt}>Sign up with Apple</Text>
+                <Text style={styles.AppleTxt}>Login with Apple</Text>
             </TouchableOpacity>
         </>
     )
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         height: 50,
         borderRadius: 30,
-        marginTop: 50
+        marginTop: 25
     },
     loginText: {
         color: '#9E7676',
