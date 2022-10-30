@@ -1,32 +1,43 @@
-import { View, Text, SafeAreaView, Image, StyleSheet, TextInput, Button, TouchableOpacity } from 'react-native';
+import { View, Text, SafeAreaView, Image, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import React from 'react';
 import AppleIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import GmailIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { StatusBar } from 'expo-status-bar';
+import { FakeUserData } from '../components/CoffeeStories';
 
-export default function Login({navigation}) {
+export default function SignUp({navigation}) {
+
   return (
-    <View style={styles.container}>
-        <View style={{width: '70%', marginLeft: 20, marginBottom: 60}}>
-             <Text style={{fontSize: 35, fontWeight: '200'}}>Login</Text>
+    <SafeAreaView style={styles.container}>
+        <View style={{width: '70%', marginLeft: 20, marginBottom: 40, marginTop: 90}}>
+             <Text style={{fontSize: 35, fontWeight: '200'}}>Sign Up</Text>
         </View>
-        
-        <EmailChoices/>
-        <View>
-            <Text style={{marginBottom: 30, fontSize: 25, fontWeight: '200'}}>Or</Text>
-        </View>
-        <UsernameLogin />
-        <PasswordLogin />
-        <LoginScreenBtn navigation={navigation}/>
-    </View>
+        <Avatar/>
+        <EmailSignUp />
+        <UsernameSignUp />
+        <CitySignUp />
+        <PasswordSignUp />
+        <SignUpBtn navigation={navigation}/>
+    </SafeAreaView>
   )
 };
 
-const  UsernameLogin = () => {
+const EmailSignUp = () => {
     return (
         <View style={styles.InputView}>
         <TextInput
-            placeholder='Username'
+            placeholder='Email'
+            placeholderTextColor="#9E7676"
+            style={styles.input}
+         />
+        </View>
+    )
+}
+
+const  UsernameSignUp = () => {
+    return (
+        <View style={styles.InputView}>
+        <TextInput
+            placeholder='Display Name'
             placeholderTextColor="#9E7676"
             style={styles.input}
          />
@@ -34,7 +45,19 @@ const  UsernameLogin = () => {
     )
 };
 
-const PasswordLogin = () => {
+const CitySignUp = () => {
+    return (
+        <View style={styles.InputView}>
+        <TextInput
+            placeholder='City'
+            placeholderTextColor="#9E7676"
+            style={styles.input}
+         />
+        </View>
+    )
+}
+
+const PasswordSignUp = () => {
     return (
         <View style={styles.InputView}>
         <TextInput
@@ -44,41 +67,30 @@ const PasswordLogin = () => {
             style={styles.input}
          />
         </View>
+        
     )
 };
 
-const LoginScreenBtn = ({navigation}) => {
+const SignUpBtn = ({navigation}) => {
     return (
         <>
             <TouchableOpacity style={styles.touchableStyle} onPress={() => navigation.navigate('HomeScreen')}>
-                <Text style={styles.loginText}>Login</Text>
-            </TouchableOpacity>
-             <TouchableOpacity style={styles.forgotContainer}>
-                <Text style={styles.forgotText}>Forgot password or username?</Text>
+                <Text style={styles.loginText}>Sign Up</Text>
             </TouchableOpacity>
         </>    
     )
 };
 
-const EmailChoices = () => {
+const Avatar = () => {
     return (
-        <>
-            <TouchableOpacity style={[styles.emailContainer, {backgroundColor: '#de5246'}]}>
-                <GmailIcon name="gmail" size={25} color='white' />
-                <Text style={styles.GmailTxt}>Login with Google</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={[styles.emailContainer, {backgroundColor: 'black'}]}>
-                <AppleIcon name="apple" size={25} color='white'/>
-                <Text style={styles.AppleTxt}>Login with Apple</Text>
-            </TouchableOpacity>
-        </>
+        <View style={{width: 100, height: 100, backgroundColor: '#FFF8EA', justifyContent: 'center', alignItems: 'center', borderRadius: 50, marginBottom: 40}}>
+           <Text style={styles.loginText}>User Avatar</Text>
+        </View>
     )
 };
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -92,7 +104,7 @@ const styles = StyleSheet.create({
     },
     InputView: {
         backgroundColor: '#FFF8EA',
-        width: '70%',
+        width: '60%',
         borderRadius: 30,
         alignItems: 'center',
         marginBottom: 20,

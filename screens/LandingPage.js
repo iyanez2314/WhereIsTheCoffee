@@ -12,7 +12,7 @@ export default function LandingPage({navigation}) {
                 <Pressable style={styles.loginBtn} onPress={() => navigation.navigate('Login')} pressRetentionOffset={{bottom: 30, left: 20, right: 20, top: 20}}>
                     <Text style={styles.btnTxt}>Login</Text>
                 </Pressable>
-                <Pressable onPress={() => console.log('sign up pressed')} style={styles.signupBtn}>
+                <Pressable onPress={() => navigation.navigate('SignUp')} style={styles.signupBtn}>
                     <Text style={styles.btnTxt}>Sign up</Text>
                 </Pressable>
       </View>
