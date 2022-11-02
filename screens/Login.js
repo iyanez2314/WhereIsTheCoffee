@@ -1,11 +1,13 @@
 import { View, Text, SafeAreaView, Image, StyleSheet, TextInput, Button, TouchableOpacity } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import AppleIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import GmailIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { StatusBar } from 'expo-status-bar';
+import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from 'firebase/auth';
+import {initializeApp} from 'firebase/app';
+import { firebaseConfig } from '../firebase';
 
 export default function Login({navigation}) {
-  return (
+return (
     <View style={styles.container}>
         <View style={{width: '70%', marginLeft: 20, marginBottom: 60}}>
              <Text style={{fontSize: 35, fontWeight: '200'}}>Login</Text>
@@ -15,26 +17,28 @@ export default function Login({navigation}) {
         <View>
             <Text style={{marginBottom: 30, fontSize: 25, fontWeight: '200'}}>Or</Text>
         </View>
-        <UsernameLogin />
-        <PasswordLogin />
-        <LoginScreenBtn navigation={navigation}/>
+        <UsernameLogin email={email} setEmail={setEmail}/>
+        <PasswordLogin password={password} setPassword={setPassword}/>
+        <LoginScreenBtn navigation={navigation} handleSignUp={handleSignUp}/>
     </View>
   )
 };
 
-const  UsernameLogin = () => {
+const  UsernameLogin = ({email, setEmail}) => {
     return (
         <View style={styles.InputView}>
         <TextInput
             placeholder='Username'
             placeholderTextColor="#9E7676"
             style={styles.input}
+            value={email}
+            onChangeText={(text) => setEmail(text)}
          />
         </View>
     )
 };
 
-const PasswordLogin = () => {
+const PasswordLogin = ({password, setPassword}) => {
     return (
         <View style={styles.InputView}>
         <TextInput
@@ -42,15 +46,17 @@ const PasswordLogin = () => {
             placeholderTextColor="#9E7676"
             secureTextEntry={true}
             style={styles.input}
+            value={password}
+            onChangeText={(text) => setPassword(text)}
          />
         </View>
     )
 };
 
-const LoginScreenBtn = ({navigation}) => {
+const LoginScreenBtn = ({navigation, handleSignUp}) => {
     return (
         <>
-            <TouchableOpacity style={styles.touchableStyle} onPress={() => navigation.navigate('HomeScreen')}>
+            <TouchableOpacity style={styles.touchableStyle} onPress={handleSignUp}>
                 <Text style={styles.loginText}>Login</Text>
             </TouchableOpacity>
              <TouchableOpacity style={styles.forgotContainer}>

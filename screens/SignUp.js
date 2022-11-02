@@ -1,10 +1,31 @@
 import { View, Text, SafeAreaView, Image, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import AppleIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import GmailIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { FakeUserData } from '../components/CoffeeStories';
+import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from 'firebase/auth';
+import {initializeApp} from 'firebase/app';
+import { firebaseConfig } from '../firebase';
 
 export default function SignUp({navigation}) {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [displayName, setDisplayName] = useState('');
+
+   const app = initializeApp(firebaseConfig);
+   const auth = getAuth(app);
+
+   const handleCreateUser = () => {
+       createUserWithEmailAndPassword(auth, email, password, displayName)
+       .then((userCredential) => {
+           console.log('Account Created!')
+           const user = userCredential.user;
+           console.log(user)
+       })
+       .catch(error => {
+           console.log(error);
+       })
+   }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -12,34 +33,38 @@ export default function SignUp({navigation}) {
              <Text style={{fontSize: 35, fontWeight: '200'}}>Sign Up</Text>
         </View>
         <Avatar/>
-        <EmailSignUp />
-        <UsernameSignUp />
+        <EmailSignUp email={email} setEmail={setEmail}/>
+        <UsernameSignUp displayName={displayName} setDisplayName={setDisplayName}/>
         <CitySignUp />
-        <PasswordSignUp />
-        <SignUpBtn navigation={navigation}/>
+        <PasswordSignUp password={password} setPassword={setPassword}/>
+        <SignUpBtn navigation={navigation} handleCreateUser={handleCreateUser}/>
     </SafeAreaView>
   )
 };
 
-const EmailSignUp = () => {
+const EmailSignUp = ({email, setEmail}) => {
     return (
         <View style={styles.InputView}>
         <TextInput
             placeholder='Email'
             placeholderTextColor="#9E7676"
             style={styles.input}
+            value={email}
+            onChangeText={(text) => setEmail(text)}
          />
         </View>
     )
 }
 
-const  UsernameSignUp = () => {
+const  UsernameSignUp = ({displayName, setDisplayName}) => {
     return (
         <View style={styles.InputView}>
         <TextInput
             placeholder='Display Name'
             placeholderTextColor="#9E7676"
             style={styles.input}
+            value={displayName}
+            onChangeText={(text) => setDisplayName(text)}
          />
         </View>
     )
@@ -57,7 +82,7 @@ const CitySignUp = () => {
     )
 }
 
-const PasswordSignUp = () => {
+const PasswordSignUp = ({password, setPassword}) => {
     return (
         <View style={styles.InputView}>
         <TextInput
@@ -65,16 +90,18 @@ const PasswordSignUp = () => {
             placeholderTextColor="#9E7676"
             secureTextEntry={true}
             style={styles.input}
+            value={password}
+            onChangeText={(text) => setPassword(text)}
          />
         </View>
         
     )
 };
 
-const SignUpBtn = ({navigation}) => {
+const SignUpBtn = ({navigation, handleCreateUser}) => {
     return (
         <>
-            <TouchableOpacity style={styles.touchableStyle} onPress={() => navigation.navigate('HomeScreen')}>
+            <TouchableOpacity style={styles.touchableStyle} onPress={handleCreateUser}>
                 <Text style={styles.loginText}>Sign Up</Text>
             </TouchableOpacity>
         </>    
