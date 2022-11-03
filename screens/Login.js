@@ -5,8 +5,29 @@ import GmailIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from 'firebase/auth';
 import {initializeApp} from 'firebase/app';
 import { firebaseConfig } from '../firebase';
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from "@react-navigation/native";
 
 export default function Login({navigation}) {
+    const Stack = createStackNavigator();
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const app = initializeApp(firebaseConfig);
+   const auth = getAuth(app);
+
+    const handleSignIn = () => {
+        signInWithEmailAndPassword(auth, email, password)
+        .then((userCredentials) => {
+            const user = userCredentials.user;
+            navigation.navigate('HomeScreen')
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+
 return (
     <View style={styles.container}>
         <View style={{width: '70%', marginLeft: 20, marginBottom: 60}}>
@@ -19,7 +40,7 @@ return (
         </View>
         <UsernameLogin email={email} setEmail={setEmail}/>
         <PasswordLogin password={password} setPassword={setPassword}/>
-        <LoginScreenBtn navigation={navigation} handleSignUp={handleSignUp}/>
+        <LoginScreenBtn navigation={navigation} handleSignIn={handleSignIn}/>
     </View>
   )
 };
@@ -28,7 +49,7 @@ const  UsernameLogin = ({email, setEmail}) => {
     return (
         <View style={styles.InputView}>
         <TextInput
-            placeholder='Username'
+            placeholder='Email'
             placeholderTextColor="#9E7676"
             style={styles.input}
             value={email}
@@ -53,10 +74,10 @@ const PasswordLogin = ({password, setPassword}) => {
     )
 };
 
-const LoginScreenBtn = ({navigation, handleSignUp}) => {
+const LoginScreenBtn = ({navigation, handleSignIn}) => {
     return (
         <>
-            <TouchableOpacity style={styles.touchableStyle} onPress={handleSignUp}>
+            <TouchableOpacity style={styles.touchableStyle} onPress={handleSignIn}>
                 <Text style={styles.loginText}>Login</Text>
             </TouchableOpacity>
              <TouchableOpacity style={styles.forgotContainer}>
