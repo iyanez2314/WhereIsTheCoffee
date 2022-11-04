@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, Image, StyleSheet, TextInput, Button, TouchableOpacity } from 'react-native';
+import { View, Text, SafeAreaView, Image, StyleSheet, TextInput, Button, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import React, { useState } from 'react';
 import AppleIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import GmailIcon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -15,33 +15,44 @@ export default function Login({navigation}) {
     const [password, setPassword] = useState('');
 
     const app = initializeApp(firebaseConfig);
-   const auth = getAuth(app);
+    const auth = getAuth(app);
 
     const handleSignIn = () => {
         signInWithEmailAndPassword(auth, email, password)
         .then((userCredentials) => {
             const user = userCredentials.user;
-            navigation.navigate('HomeScreen')
+            navigation.navigate('HomeScreen');
         })
         .catch(error => {
             console.log(error)
         })
     }
 
+    const handleCreateUser = () => {
+        createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            console.log('Account Created!');
+            const user = userCredential.user;
+            navigation.navigate('HomeScreen');
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    }
+
 return (
-    <View style={styles.container}>
-        <View style={{width: '70%', marginLeft: 20, marginBottom: 60}}>
-             <Text style={{fontSize: 35, fontWeight: '200'}}>Login</Text>
+    <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={styles.container}>
+        <View style={{justifyContent: 'center', alignContent: 'center', marginBottom: 30}}>
+             <Text style={{fontSize: 35, fontWeight: '200'}}>Login / Sign up</Text>
         </View>
-        
-        <EmailChoices/>
-        <View>
+        {/* <EmailChoices/> */}
+        {/* <View>
             <Text style={{marginBottom: 30, fontSize: 25, fontWeight: '200'}}>Or</Text>
-        </View>
+        </View> */}
         <UsernameLogin email={email} setEmail={setEmail}/>
         <PasswordLogin password={password} setPassword={setPassword}/>
-        <LoginScreenBtn navigation={navigation} handleSignIn={handleSignIn}/>
-    </View>
+        <LoginScreenBtn handleCreateUser={handleCreateUser} navigation={navigation} handleSignIn={handleSignIn}/>
+    </KeyboardAvoidingView>
   )
 };
 
@@ -74,11 +85,14 @@ const PasswordLogin = ({password, setPassword}) => {
     )
 };
 
-const LoginScreenBtn = ({navigation, handleSignIn}) => {
+const LoginScreenBtn = ({handleCreateUser, handleSignIn}) => {
     return (
         <>
             <TouchableOpacity style={styles.touchableStyle} onPress={handleSignIn}>
                 <Text style={styles.loginText}>Login</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.touchableStyle} onPress={handleCreateUser}>
+                <Text style={styles.loginText}>Sign up</Text>
             </TouchableOpacity>
              <TouchableOpacity style={styles.forgotContainer}>
                 <Text style={styles.forgotText}>Forgot password or username?</Text>

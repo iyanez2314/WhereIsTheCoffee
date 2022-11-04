@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, Image, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, SafeAreaView, Image, StyleSheet, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import React, {useState} from 'react';
 import AppleIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import GmailIcon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -6,6 +6,7 @@ import { FakeUserData } from '../components/CoffeeStories';
 import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from 'firebase/auth';
 import {initializeApp} from 'firebase/app';
 import { firebaseConfig } from '../firebase';
+import { createStackNavigator } from '@react-navigation/stack';
 
 export default function SignUp({navigation}) {
     const [email, setEmail] = useState('');
@@ -20,7 +21,7 @@ export default function SignUp({navigation}) {
        .then((userCredential) => {
            console.log('Account Created!')
            const user = userCredential.user;
-           console.log(user)
+           navigation.navigate('Login')
        })
        .catch(error => {
            console.log(error);
@@ -28,16 +29,20 @@ export default function SignUp({navigation}) {
    }
 
   return (
-    <SafeAreaView style={styles.container}>
-        <View style={{width: '70%', marginLeft: 20, marginBottom: 40, marginTop: 90}}>
+    <SafeAreaView>
+    <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"}>
+    <View  style={styles.container}>
+        <View style={{marginBottom: 40, marginTop: 255, justifyContent: 'center', alignContent: 'center'}}>
              <Text style={{fontSize: 35, fontWeight: '200'}}>Sign Up</Text>
         </View>
-        <Avatar/>
+        {/* <Avatar/> */}
         <EmailSignUp email={email} setEmail={setEmail}/>
-        <UsernameSignUp displayName={displayName} setDisplayName={setDisplayName}/>
-        <CitySignUp />
+        {/* <UsernameSignUp displayName={displayName} setDisplayName={setDisplayName}/> */}
+        {/* <CitySignUp /> */}
         <PasswordSignUp password={password} setPassword={setPassword}/>
         <SignUpBtn navigation={navigation} handleCreateUser={handleCreateUser}/>
+    </View>
+        </KeyboardAvoidingView>
     </SafeAreaView>
   )
 };

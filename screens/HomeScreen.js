@@ -8,7 +8,7 @@ import CoffeeStories from '../components/CoffeeStories';
 
 export default function HomeScreen({navigation}) {
 
-  const [city, setCity] = useState('San Antonio');
+  const [city, setCity] = useState();
   const [cityData, setCityData] = useState(LocalCoffeeShops);
 
   const FetchCityData = () => {

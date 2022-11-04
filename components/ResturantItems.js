@@ -33,7 +33,9 @@ export const LocalCoffeeShops = [
 export default function ResturantItems({cityData, navigation}) {
   return (
     <>
-    {cityData.map((items, index) => (
+    {!cityData 
+        ? <View style={styles.noDataView}><Text style={styles.noDatatext}>Enter your city so you can find coffee shops in your area ☕️</Text></View>
+        : cityData.map((items, index) => (
         <TouchableOpacity key={index} activeOpacity={1} style={{backgroundColor: '#FFF8EA', marginBottom: 10, marginTop: 10}} 
         onPress={() => navigation.navigate('ResturantDetail', {
             name: items.name,
@@ -105,5 +107,14 @@ const styles = StyleSheet.create({
     CompanyRating: {
         fontWeight: '700',
         color: '#FFF8EA'
+    },
+    noDataView: {
+        marginTop: 250,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    noDatatext: {
+       fontWeight: '200',
+       fontSize: 15
     }
 });
