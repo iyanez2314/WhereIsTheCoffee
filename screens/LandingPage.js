@@ -2,9 +2,6 @@ import { View, Text, StyleSheet, SafeAreaView, Pressable } from 'react-native';
 import React from 'react';
 
 export default function LandingPage({navigation}) {
-    const btnPressed = () => {
-        console.log('pressed')
-    }
   return (
     <SafeAreaView style={styles.SafeAreaView}>
       <Text style={{fontSize: 25, fontWeight: '300', color: '#9E7676'}}>Where is the coffee?</Text>

@@ -19,7 +19,6 @@ export default function SignUp({navigation}) {
    const handleCreateUser = () => {
        createUserWithEmailAndPassword(auth, email, password, displayName)
        .then((userCredential) => {
-           console.log('Account Created!')
            const user = userCredential.user;
            navigation.navigate('Login')
        })
@@ -35,10 +34,7 @@ export default function SignUp({navigation}) {
         <View style={{marginBottom: 40, marginTop: 255, justifyContent: 'center', alignContent: 'center'}}>
              <Text style={{fontSize: 35, fontWeight: '200'}}>Sign Up</Text>
         </View>
-        {/* <Avatar/> */}
         <EmailSignUp email={email} setEmail={setEmail}/>
-        {/* <UsernameSignUp displayName={displayName} setDisplayName={setDisplayName}/> */}
-        {/* <CitySignUp /> */}
         <PasswordSignUp password={password} setPassword={setPassword}/>
         <SignUpBtn navigation={navigation} handleCreateUser={handleCreateUser}/>
     </View>

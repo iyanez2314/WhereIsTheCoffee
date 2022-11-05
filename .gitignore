@@ -10,6 +10,8 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
+.watchmanconfig
+firebase.*
 
 # macOS
 .DS_Store

@@ -4,7 +4,6 @@ import SearchBar from '../components/SearchBar';
 import ResturantItems from '../components/ResturantItems';
 import {YELP_API} from '@env';
 import { LocalCoffeeShops } from '../components/ResturantItems';
-import CoffeeStories from '../components/CoffeeStories';
 import { FakeUserData } from '../components/CoffeeStories';
 
 export default function HomeScreen({navigation}) {

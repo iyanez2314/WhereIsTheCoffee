@@ -22,7 +22,6 @@ export default function Login({navigation}) {
         .then((userCredentials) => {
             const user = userCredentials.user;
             navigation.navigate('HomeScreen');
-            console.log(user);
         })
         .catch(error => {
             console.log(error)
@@ -32,7 +31,6 @@ export default function Login({navigation}) {
     const handleCreateUser = () => {
         createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-            console.log('Account Created!');
             const user = userCredential.user;
             navigation.navigate('HomeScreen');
         })
@@ -46,10 +44,6 @@ return (
         <View style={{justifyContent: 'center', alignContent: 'center', marginBottom: 30}}>
              <Text style={{fontSize: 35, fontWeight: '200'}}>Login / Sign up</Text>
         </View>
-        {/* <EmailChoices/> */}
-        {/* <View>
-            <Text style={{marginBottom: 30, fontSize: 25, fontWeight: '200'}}>Or</Text>
-        </View> */}
         <UsernameLogin email={email} setEmail={setEmail}/>
         <PasswordLogin password={password} setPassword={setPassword}/>
         <LoginScreenBtn handleCreateUser={handleCreateUser} navigation={navigation} handleSignIn={handleSignIn}/>
