@@ -46,7 +46,7 @@ export default function SearchBar({setCity}) {
 
 const styles = StyleSheet.create({
     SearchView:{
-        marginTop: 15,
+        marginTop: 1,
         flexDirection: 'row',
     },
     leftButtonView: {

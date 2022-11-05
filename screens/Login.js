@@ -22,6 +22,7 @@ export default function Login({navigation}) {
         .then((userCredentials) => {
             const user = userCredentials.user;
             navigation.navigate('HomeScreen');
+            console.log(user);
         })
         .catch(error => {
             console.log(error)
